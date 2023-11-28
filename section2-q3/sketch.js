@@ -1,4 +1,5 @@
-// ダーツ
+let cx; // 中心の x 座標
+let cy; // 中心の y 座標
 
 function setup() {
   const green = color(0, 255, 0);
@@ -10,21 +11,28 @@ function setup() {
   stroke(255);
   strokeWeight(3);
 
-  const cx = width / 2; // 中心は (cx, cy)
-  const cy = height / 2;
+  cx = width / 2; // 中心は (cx, cy)
+  cy = height / 2;
   const maxR = min(width, height); // 大きさは幅と高さのうち小さい方
-
+  
   drawCircle(black, maxR);
   drawArcs(green, red, maxR * 0.8);
-  // BLANK[1] (hint: drawArcs x 3, drawCircle x 1)
+  drawArcs(black, cream, maxR * 0.75);
+  drawArcs(green, red, maxR * 0.5);
+  drawArcs(black, cream, maxR * 0.45);
+
+  // ダーツボードの中央に小さな赤い円を描画します
+  drawCircle(green, maxR * 0.10);
   drawCircle(red, maxR * 0.05);
 }
 
-function drawCircle(c, r){
+// 円を描画する関数
+function drawCircle(c, r) {
   fill(c);
   ellipse(cx, cy, r, r);
 }
 
+// ダーツボードのセクションを描画する関数
 function drawArcs(c1, c2, r) {
   for (let i = 0; i < 20; i++) {
     let start = TWO_PI / 20 * i;
